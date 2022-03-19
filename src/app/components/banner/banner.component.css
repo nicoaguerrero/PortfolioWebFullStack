@@ -3,6 +3,13 @@
     height: 100vh;
 }
 
+/*Banner height in some devices is too tall
+and there is a lot of blank space
+check this again later*/
+@media only screen and (max-width: 600px) {
+  .banner {height:85vh}
+}
+
 h1 strong{
     color: var(--bs-primary);
 }
