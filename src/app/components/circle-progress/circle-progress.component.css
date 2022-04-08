@@ -8,7 +8,7 @@
   
   .circle-bg {
     fill: none;
-    stroke: var(--bs-light);
+    stroke: var(--bs-gray-400);
     stroke-width: 3;
   }
   
