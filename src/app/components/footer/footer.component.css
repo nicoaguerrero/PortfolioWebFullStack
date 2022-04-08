@@ -1,0 +1,9 @@
+footer{
+    height:200px;
+    background-color: var(--bs-primary);
+}
+
+p{
+    text-align: center;
+    color: #fff;
+}
