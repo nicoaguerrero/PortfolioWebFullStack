@@ -1,0 +1,18 @@
+h1{
+    color:var(--bs-primary);
+    text-align: center;
+}
+
+.skill{
+    height: 200px;
+    width: 200px;
+}
+
+p,h5{
+    color:var(--bs-primary);
+}
+
+.language{
+    height: 120px;
+    width: 120px;
+}
