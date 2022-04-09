@@ -1,38 +1,10 @@
 .banner{
-    padding-top: 20vh;
-    height: 100vh;
+    height: 80vh;
+    margin-top: 20vh;
 }
 
-h1 strong{
-    color: var(--bs-primary);
-}
-
-@keyframes animateWave {
-    0% {
-      transform: scale(1,0);
-    }
-    100% {
-      transform: scale(1,1);
-    }
-  }
-
-  .banner-bottom > svg {
-    display: block;
-    transform-origin: bottom;
-    animation: animateWave 1000ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
-  }
-  
-  img{
-      position: relative;
-  }
-
-  .banner-top {
-    position: relative;
-}
-
-.banner-bottom {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    max-height: 200px;
+img{
+  max-height: 70vh;
+  width: 100%;
+  object-fit: cover;
 }
