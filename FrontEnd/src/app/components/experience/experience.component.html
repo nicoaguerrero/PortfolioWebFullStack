@@ -2,25 +2,15 @@
     <div class="container py-5">
         <h1><strong>Experiencia</strong></h1>
         <div class="card mb-3 mt-5">
-            <div class="row g-0">
+            <div class="row g-0" *ngFor="let experience of experiences">
               <div class="exp-img col-1 m-2 text-center align-self-md-center align-self-sm-start">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/UNLP_Logo_%28cropped%29.svg/1200px-UNLP_Logo_%28cropped%29.svg.png" class="img-fluid rounded-start" alt="...">
+                <img src="{{experience.imgExp}}" class="img-fluid rounded-start" alt="...">
               </div>
               <div class="col-10">
                 <div class="card-body">
-                  <h5 class="card-title">Titulo experiencia</h5>
-                  <p class="card-text">Esta es la descripcion de lo que hice en toda esta experiencia, el texto es responsive y esta contemplado el uso de celular</p>
-                  <p class="card-text"><small class="text-muted">2019-2022</small></p>
-                </div>
-              </div>
-              <div class="exp-img col-1 m-2 text-center align-self-md-center align-self-sm-start">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/UNLP_Logo_%28cropped%29.svg/1200px-UNLP_Logo_%28cropped%29.svg.png" class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-10">
-                <div class="card-body">
-                  <h5 class="card-title">Titulo experiencia</h5>
-                  <p class="card-text">Esta es la descripcion de lo que hice en toda esta experiencia, el texto es responsive y esta contemplado el uso de celular</p>
-                  <p class="card-text"><small class="text-muted">2015-2019</small></p>
+                  <h5 class="card-title">{{experience.titleExp}}</h5>
+                  <p class="card-text">{{experience.descriptionExp}}</p>
+                  <p class="card-text"><small class="text-muted">{{experience.dateExp}}</small></p>
                 </div>
               </div>
             </div>

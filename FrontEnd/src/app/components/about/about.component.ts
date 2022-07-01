@@ -8,7 +8,7 @@ import { PersonService } from 'src/app/service/person.service';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  person: person = new person('','','');
+  person: person = new person('','','','','');
   constructor(public personService: PersonService) { }
 
   ngOnInit(): void {

@@ -7,7 +7,7 @@ import { person } from 'src/app/model/person.model';
   providedIn: 'root'
 })
 export class PersonService {
-  url = 'http://localhost:8080/person/';
+  private url = 'http://localhost:8080/person/';
 
   constructor(private http: HttpClient) { }
 
