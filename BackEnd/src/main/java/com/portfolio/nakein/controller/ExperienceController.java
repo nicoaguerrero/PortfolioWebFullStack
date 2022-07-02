@@ -29,7 +29,7 @@ public class ExperienceController {
     }
     
     @PostMapping("/create")
-    public String createEducation(@RequestBody Experience experience){
+    public String createExperience(@RequestBody Experience experience){
         iexperienceService.saveExperience(experience);
         return "Experience was created sucessfully";
     }

@@ -1,31 +1,21 @@
 <section class="proyects mt-5">
     <div class="container py-5 rounded">
         <h1><strong>Proyectos</strong></h1>
-        <div class="card mb-3 mt-5">
-            <div class="row g-0 my-3">
-                <div class="col-md-4 col-sm-12 text-center">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/UNLP_Logo_%28cropped%29.svg/1200px-UNLP_Logo_%28cropped%29.svg.png" class="img-fluid" alt="...">
+        <div class="row row-cols-1 row-cols-md-2 g-4 mt-5">
+          <div class="col" *ngFor="let proyect of proyects">
+            <div class="card h-100">
+                <div class="col-md-12 col-sm-12 text-center">
+                  <img src="{{proyect.imgPro}}" class="img-fluid" alt="...">
+                </div>
+                <div class="col-md-12 col-sm-12">
+                  <div class="card-body">
+                    <h5 class="card-title">{{proyect.titlePro}}</h5>
+                    <p class="card-text">{{proyect.descriptionPro}}</p>
+                    <a type="button" class="btn btn-primary" href="{{proyect.urlPro}}" target="_blank">Ir al proyecto</a>
                   </div>
-                  <div class="col-md-8 col-sm-12">
-                    <div class="card-body">
-                      <h5 class="card-title">Proyecto: Portfolio</h5>
-                      <p class="card-text">Esta es la descripcion de lo que hice en todo este proyecto, el texto es responsive y esta contemplado el uso de celular</p>
-                      <a type="button" class="btn btn-primary">Ir al proyecto</a>
-                    </div>
-                  </div>
+                </div>
             </div>
-            <div class="row g-0 my-3">
-                <div class="col-md-4 col-sm-12 text-center">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/UNLP_Logo_%28cropped%29.svg/1200px-UNLP_Logo_%28cropped%29.svg.png" class="img-fluid" alt="...">
-                  </div>
-                  <div class="col-md-8 col-sm-12">
-                    <div class="card-body">
-                      <h5 class="card-title">Proyecto: Portfolio</h5>
-                      <p class="card-text">Esta es la descripcion de lo que hice en todo este proyecto, el texto es responsive y esta contemplado el uso de celular</p>
-                      <a type="button" class="btn btn-primary">Ir al proyecto</a>
-                    </div>
-                  </div>
-              </div>
+          </div>
         </div>
     </div>
 </section>

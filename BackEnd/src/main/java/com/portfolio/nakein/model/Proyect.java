@@ -15,19 +15,19 @@ public class Proyect {
     private Long idProyect;
     private String titlePro;
     private String descriptionPro;
-    private String imgPro;
     private String urlPro;
+    private String imgPro;
     
     public Proyect(){
         
     }
 
-    public Proyect(Long idProyect, String titlePro, String descriptionPro, String imgPro, String urlPro) {
+    public Proyect(Long idProyect, String titlePro, String descriptionPro, String urlPro, String imgPro) {
         this.idProyect = idProyect;
         this.titlePro = titlePro;
         this.descriptionPro = descriptionPro;
-        this.imgPro = imgPro;
         this.urlPro = urlPro;
+        this.imgPro = imgPro;
     }
     
     
