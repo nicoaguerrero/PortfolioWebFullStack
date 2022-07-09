@@ -16,16 +16,18 @@ public class Skill {
     private String titleSkill;
     private String imgSkill;
     private int percentage;
+    private boolean language;
     
     public Skill(){
         
     }
 
-    public Skill(Long idSkill, String titleSkill, String imgSkill, int percentage) {
+    public Skill(Long idSkill, String titleSkill, String imgSkill, int percentage, boolean language) {
         this.idSkill = idSkill;
         this.titleSkill = titleSkill;
         this.imgSkill = imgSkill;
         this.percentage = percentage;
+        this.language = language;
     }
     
     

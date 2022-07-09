@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CircleProgressComponent implements OnInit {
 
   @Input() percentage: number = 0;
-  @Input() imgUrl: string = '';
+  @Input() imgUrl: String = '';
 
   constructor() { }
 
