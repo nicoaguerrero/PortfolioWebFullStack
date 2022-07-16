@@ -4,6 +4,8 @@ import com.portfolio.nakein.model.Education;
 import com.portfolio.nakein.service.IEducationService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,37 +31,26 @@ public class EducationController {
     }
     
     @PostMapping("/create")
-    public String createEducation(@RequestBody Education education){
-        ieducationService.saveEducation(education);
-        return "Education was created sucessfully";
+    public ResponseEntity<Education> createEducation(@RequestBody Education education){
+        Education newEducation = ieducationService.saveEducation(education);
+        return new ResponseEntity<>(newEducation,HttpStatus.CREATED);
     }
     
     @DeleteMapping("/delete/{id}")
-    public String deleteEducation(@PathVariable Long id){
+    public ResponseEntity<?> deleteEducation(@PathVariable Long id){
         ieducationService.deleteEducation(id);
-        return "The person was deleted sucessfully";
+        return new ResponseEntity<>(HttpStatus.OK);
     }
     
-    @PutMapping("/edit/{id}")
-    public Education editEducation(@PathVariable Long id,
-                               @RequestParam("title") String newTitle,
-                               @RequestParam("description") String newDescription,
-                               @RequestParam("date") String newDate,
-                               @RequestParam("img") String newImg){
-       Education education = ieducationService.findEducation(id);
-       
-       education.setTitleEdu(newTitle);
-       education.setDescriptionEdu(newDescription);
-       education.setDateEdu(newDate);
-       education.setImgEdu(newImg);
-       
-       ieducationService.saveEducation(education);
-       return education;
+    @PutMapping("/edit")
+    public ResponseEntity<Education> editEducation(@RequestBody Education education){
+        Education updateEducation = ieducationService.saveEducation(education);
+        return new ResponseEntity<>(updateEducation,HttpStatus.OK);
     }
     
     @GetMapping("/bring/profile")
-    public Education findEducation(){
-        return ieducationService.findEducation((long)1);
+    public Education findEducation(Long id){
+        return ieducationService.findEducation(id);
     }
     
 }
