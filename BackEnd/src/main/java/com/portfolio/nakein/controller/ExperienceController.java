@@ -4,6 +4,8 @@ import com.portfolio.nakein.model.Experience;
 import com.portfolio.nakein.service.IExperienceService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,32 +31,21 @@ public class ExperienceController {
     }
     
     @PostMapping("/create")
-    public String createExperience(@RequestBody Experience experience){
-        iexperienceService.saveExperience(experience);
-        return "Experience was created sucessfully";
+    public ResponseEntity<Experience> createExperience(@RequestBody Experience experience){
+        Experience newExperience = iexperienceService.saveExperience(experience);
+        return new ResponseEntity<>(newExperience,HttpStatus.CREATED);
     }
     
     @DeleteMapping("/delete/{id}")
-    public String deleteExperience(@PathVariable Long id){
+    public ResponseEntity<?> deleteExperience(@PathVariable Long id){
         iexperienceService.deleteExperience(id);
-        return "The experience was deleted sucessfully";
+        return new ResponseEntity<>(HttpStatus.OK);
     }
     
-    @PutMapping("/edit/{id}")
-    public Experience editExperience(@PathVariable Long id,
-                               @RequestParam("titleExp") String newTitle,
-                               @RequestParam("descriptionExp") String newDescription,
-                               @RequestParam("dateExp") String newDate,
-                               @RequestParam("imgExp") String newImg){
-       Experience experience = iexperienceService.findExperience(id);
-       
-       experience.setTitleExp(newTitle);
-       experience.setDescriptionExp(newDescription);
-       experience.setDateExp(newDate);
-       experience.setImgExp(newImg);
-       
-       iexperienceService.saveExperience(experience);
-       return experience;
+    @PutMapping("/edit")
+    public ResponseEntity<Experience> editExperience(@RequestBody Experience experience){
+       Experience updateExperience = iexperienceService.saveExperience(experience);
+       return new ResponseEntity<>(updateExperience,HttpStatus.OK);
     }
     
     @GetMapping("/bring/profile")

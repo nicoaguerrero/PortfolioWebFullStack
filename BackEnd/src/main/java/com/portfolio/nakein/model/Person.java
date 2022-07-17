@@ -33,6 +33,7 @@ public class Person implements Serializable {
     @Column(nullable=false, length=600)
     private String description;
     private String img;
+    private String banner;
     
     //Lazy gets the entity only when we really need it
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "idEdu")
@@ -48,13 +49,14 @@ public class Person implements Serializable {
         
     }
 
-    public Person(Long id, String name, String surname, String degree, String description, String img) {
+    public Person(Long id, String name, String surname, String degree, String description, String img, String banner) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.degree = degree;
         this.description = description;
         this.img = img;
+        this.banner = banner;
     }
     
     

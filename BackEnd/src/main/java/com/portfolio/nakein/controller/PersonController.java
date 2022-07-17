@@ -4,6 +4,8 @@ import com.portfolio.nakein.model.Person;
 import com.portfolio.nakein.service.IPersonService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,30 +31,21 @@ public class PersonController {
     }
     
     @PostMapping("/create")
-    public String createPerson(@RequestBody Person person){
-        ipersonService.savePerson(person);
-        return "The person was created sucessfully";
+    public ResponseEntity<Person> createPerson(@RequestBody Person person){
+        Person newPerson = ipersonService.savePerson(person);
+        return new ResponseEntity<>(newPerson,HttpStatus.CREATED);
     }
     
     @DeleteMapping("/delete/{id}")
-    public String deletePerson(@PathVariable Long id){
+    public ResponseEntity<?> deletePerson(@PathVariable Long id){
         ipersonService.deletePerson(id);
-        return "The person was deleted sucessfully";
+        return new ResponseEntity<>(HttpStatus.OK);
     }
     
-    @PutMapping("/edit/{id}")
-    public Person editPersona(@PathVariable Long id,
-                               @RequestParam("name") String newName,
-                               @RequestParam("surname") String newSurname,
-                               @RequestParam("img") String newImg){
-       Person person = ipersonService.findPerson(id);
-       
-       person.setSurname(newSurname);
-       person.setName(newName);
-       person.setImg(newImg);
-       
-       ipersonService.savePerson(person);
-       return person;
+    @PutMapping("/edit")
+    public ResponseEntity<Person> editPerson(@RequestBody Person person){
+       Person updatePerson = ipersonService.savePerson(person);
+       return new ResponseEntity<>(updatePerson,HttpStatus.OK);
     }
     
     @GetMapping("/bring/profile")

@@ -1,15 +1,131 @@
-<section class="about mt-5">
-    <div class="container shadow-sm">
+<section class="about mb-5">
+    <div class="container g-0 banner d-grid gap-2 d-flex justify-content-end">
+        <a class="btn btn-primary btn-banner m-3" data-bs-toggle="modal" 
+        data-bs-target="#editProfileLabel" (click)="changeNumber(1)">
+            <i class="bi bi-pencil"></i>
+        </a>
+        <img class="imgBanner img-fluid rounded mx-auto d-block" src="{{person.banner}}">
+    </div>
+    <div class="data container shadow-sm">
         <div class="row g-0">
             <div class="pfp col-lg-4 col-sm-12 text-center">
-                <img src="./assets/pfp.jpg" class="img-responsive rounded-circle mb-4 border border-2">
+                <a class="editPfp btn btn-primary m-3" data-bs-toggle="modal" (click)="changeNumber(4)" 
+                data-bs-target="#editProfileLabel">
+                    <i class="bi bi-pencil"></i>
+                </a>
+                <img src="{{person.img}}" class="imgPfp img-responsive rounded-circle mb-4 border border-2">
+                <a class="editFullname btn btn-primary m-3" data-bs-toggle="modal" (click)="changeNumber(2)" 
+                data-bs-target="#editProfileLabel">
+                    <i class="bi bi-pencil"></i>
+                </a>
                 <h5>{{person.name}} {{person.surname}}</h5>
             </div>
-            <div class="col-lg-8 col-sm-12 text-lg-start text-center">
+            <div class="col-lg-7 col-sm-12 text-lg-start text-center mt-md-5">
                 <h5><strong>{{person.degree}}</strong></h5>
                 <!-- Sample text, change later -->
                 <p>{{person.description}}</p>
             </div>
+            <div class="col-sm-12 col-md-1 col-lg-1 mt-5">
+                <a class="btn btn-primary w-50" data-bs-toggle="modal" 
+                data-bs-target="#editProfileLabel" (click)="changeNumber(3)">
+                    <i class="bi bi-pencil"></i>
+                </a>
+                <a class="btn btn-primary w-50" data-bs-toggle="modal" 
+                data-bs-target="#deleteDescriptionLabel">
+                  <i class="bi bi-x"></i>
+                </a>
+            </div>
         </div>
+    </div>
+
+    <!-- Edit profile modal-->
+    <div class="modal fade" id="editProfileLabel" tabindex="-1" 
+         aria-labelledby="editProfileLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editProfileLabel">Editar perfil</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            </button>
+          </div>
+          <div class="modal-body">
+            <form #editForm="ngForm" (ngSubmit)="onEditPerson(editForm.value)">
+              <div class="mb-3" [hidden]="number!=1">
+                <label for="banner" class="col-form-label">Nuevo banner</label>
+                <input type="text" 
+                ngModel="{{person?.banner}}"
+                name="banner" 
+                class="form-control" 
+                id="banner" 
+                placeholder="Url banner" 
+                required>
+              </div>
+              <input type="hidden"
+              ngModel="{{person?.id}}"
+              name="id"
+              class="form-control"
+              id="id">
+              <div class="mb-3" [hidden]="number!=2">
+                <label for="name" class="col-form-label">Nombre</label>
+                <input type="text" 
+                ngModel= "{{person?.name}}"
+                name="name" 
+                class="form-control" 
+                id="name" 
+                placeholder="name" 
+                required>
+              </div>
+              <div class="mb-3" [hidden]="number!=2">
+                <label for="surname" class="col-form-label">Apellido</label>
+                <input type="text" 
+                ngModel= "{{person?.surname}}"
+                name="surname" 
+                class="form-control" 
+                id="surname" 
+                placeholder="surname" 
+                required>
+              </div>
+              <div class="mb-3" [hidden]="number!=3">
+                <label for="degree" class="col-form-label">Título</label>
+                <input type="text" 
+                ngModel= "{{person?.degree}}"
+                name="degree" 
+                class="form-control" 
+                id="degree" 
+                placeholder="degree" 
+                required>
+              </div>
+              <div class="mb-3" [hidden]="number!=3">
+                <label for="description" class="col-form-label">Descripción</label>
+                <input type="text" 
+                ngModel= "{{person?.description}}"
+                name="description" 
+                class="form-control" 
+                id="description" 
+                placeholder="description" 
+                required>
+              </div>
+              <div class="mb-3" [hidden]="number!=4">
+                <label for="description" class="col-form-label">Nueva foto de perfil</label>
+                <input type="text" 
+                ngModel= "{{person?.img}}"
+                name="img" 
+                class="form-control" 
+                id="img" 
+                placeholder="Url" 
+                required>
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="edit-banner-form" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Cerrar
+                </button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                  Guardar cambios
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
 </section>

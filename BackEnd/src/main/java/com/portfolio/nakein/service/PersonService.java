@@ -18,8 +18,8 @@ public class PersonService implements IPersonService{
     }
 
     @Override
-    public void savePerson(Person person) {
-        ipersonRepository.save(person);
+    public Person savePerson(Person person) {
+        return ipersonRepository.save(person);
     }
 
     @Override

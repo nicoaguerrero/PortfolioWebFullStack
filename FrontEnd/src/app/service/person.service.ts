@@ -14,4 +14,8 @@ export class PersonService {
   public getPerson(): Observable<person> {
     return this.http.get<person>(this.url + 'bring/profile');
   }
+
+  public editPerson(person:person): Observable<person> {
+    return this.http.put<person>(this.url + 'edit', person);
+  }
 }
