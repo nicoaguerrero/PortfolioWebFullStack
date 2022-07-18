@@ -1,6 +1,6 @@
 <section class="about mb-5">
     <div class="container g-0 banner d-grid gap-2 d-flex justify-content-end">
-        <a class="btn btn-primary btn-banner m-3" data-bs-toggle="modal" 
+        <a *ngIf="isLogged" class="btn btn-primary btn-banner m-3" data-bs-toggle="modal" 
         data-bs-target="#editProfileLabel" (click)="changeNumber(1)">
             <i class="bi bi-pencil"></i>
         </a>
@@ -9,12 +9,12 @@
     <div class="data container shadow-sm">
         <div class="row g-0">
             <div class="pfp col-lg-4 col-sm-12 text-center">
-                <a class="editPfp btn btn-primary m-3" data-bs-toggle="modal" (click)="changeNumber(4)" 
+                <a *ngIf="isLogged" class="editPfp btn btn-primary m-3" data-bs-toggle="modal" (click)="changeNumber(4)" 
                 data-bs-target="#editProfileLabel">
                     <i class="bi bi-pencil"></i>
                 </a>
                 <img src="{{person.img}}" class="imgPfp img-responsive rounded-circle mb-4 border border-2">
-                <a class="editFullname btn btn-primary m-3" data-bs-toggle="modal" (click)="changeNumber(2)" 
+                <a *ngIf="isLogged" class="editFullname btn btn-primary m-3" data-bs-toggle="modal" (click)="changeNumber(2)" 
                 data-bs-target="#editProfileLabel">
                     <i class="bi bi-pencil"></i>
                 </a>
@@ -26,11 +26,11 @@
                 <p>{{person.description}}</p>
             </div>
             <div class="col-sm-12 col-md-1 col-lg-1 mt-5">
-                <a class="btn btn-primary w-50" data-bs-toggle="modal" 
+                <a *ngIf="isLogged" class="btn btn-primary w-50" data-bs-toggle="modal" 
                 data-bs-target="#editProfileLabel" (click)="changeNumber(3)">
                     <i class="bi bi-pencil"></i>
                 </a>
-                <a class="btn btn-primary w-50" data-bs-toggle="modal" 
+                <a *ngIf="isLogged" class="btn btn-primary w-50" data-bs-toggle="modal" 
                 data-bs-target="#deleteDescriptionLabel">
                   <i class="bi bi-x"></i>
                 </a>

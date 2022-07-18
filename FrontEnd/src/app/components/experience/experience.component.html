@@ -1,7 +1,7 @@
 <section class="experience">
     <div class="container py-5">
         <h1><strong>Experiencia</strong></h1>
-        <a class="col-3 col-md-1 btn btn-primary tooltips" data-bs-toggle="modal" data-bs-target="#createExperienceLabel">
+        <a *ngIf="isLogged" class="col-3 col-md-1 btn btn-primary tooltips" data-bs-toggle="modal" data-bs-target="#createExperienceLabel">
           <i class="bi bi-plus-circle"></i>
         </a>
         <div class="card mb-3 mt-5">
@@ -17,11 +17,11 @@
                 </div>
               </div>
               <div class="col-12 col-md-1 text-end">
-                <a class="btn btn-primary w-50" data-bs-toggle="modal" 
+                <a *ngIf="isLogged" class="btn btn-primary w-50" data-bs-toggle="modal" 
                   data-bs-target="#editExperienceLabel" (click)="onModalEvent('edit',experience)">
                   <i class="bi bi-pencil"></i>
                 </a>
-                <a class="btn btn-primary w-50" data-bs-toggle="modal" 
+                <a *ngIf="isLogged" class="btn btn-primary w-50" data-bs-toggle="modal" 
                 data-bs-target="#deleteExperienceLabel" (click)="onModalEvent('delete',experience)">
                   <i class="bi bi-x"></i>
                 </a>

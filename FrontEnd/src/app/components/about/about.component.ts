@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { person } from 'src/app/model/person.model';
 import { PersonService } from 'src/app/service/person.service';
+import { TokenService } from 'src/app/service/token.service';
 
 @Component({
   selector: 'app-about',
@@ -11,10 +12,16 @@ import { PersonService } from 'src/app/service/person.service';
 export class AboutComponent implements OnInit {
   person: person = new person('','','','','','');
   number:number = 0;
-  constructor(public personService: PersonService) { }
+  isLogged = false;
+  constructor(public personService: PersonService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
     this.personService.getPerson().subscribe(data => {this.person = data});
+    if(this.tokenService.getToken()){
+      this.isLogged = true;
+    }else{
+      this.isLogged = false;
+    }
   }
 
   public onEditPerson(person: person){

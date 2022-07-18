@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { education } from 'src/app/model/education.model';
 import { EducationService } from 'src/app/service/education.service';
+import { TokenService } from 'src/app/service/token.service';
 
 @Component({
   selector: 'app-education',
@@ -14,10 +15,16 @@ export class EducationComponent implements OnInit {
   educations:education[]=[];
   deleteEducation:education | undefined;
   editEducation:education | undefined;
-  constructor(public educationService: EducationService) { }
+  isLogged = false;
+  constructor(public educationService: EducationService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
     this.getEducations();
+    if(this.tokenService.getToken()){
+      this.isLogged = true;
+    }else{
+      this.isLogged = false;
+    }
   }
 
   public getEducations():void{

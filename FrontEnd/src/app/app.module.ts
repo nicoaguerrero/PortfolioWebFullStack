@@ -13,6 +13,8 @@ import { ProyectsComponent } from './components/proyects/proyects.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {HttpClientModule } from '@angular/common/http';
 import { FormsModule }   from '@angular/forms';
+import { PortfolioComponent } from './components/portfolio/portfolio.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { FormsModule }   from '@angular/forms';
     SkillsComponent,
     CircleProgressComponent,
     ProyectsComponent,
-    FooterComponent
+    FooterComponent,
+    PortfolioComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

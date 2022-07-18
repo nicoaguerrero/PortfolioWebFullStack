@@ -1,7 +1,7 @@
 <section class="education">
     <div class="container py-5 rounded">
         <h1><strong>Educacion</strong></h1>
-        <a class="col-3 col-md-1 btn btn-primary tooltips" data-bs-toggle="modal" data-bs-target="#createEducationLabel">
+        <a *ngIf="isLogged" class="col-3 col-md-1 btn btn-primary tooltips" data-bs-toggle="modal" data-bs-target="#createEducationLabel">
           <i class="bi bi-plus-circle"></i>
         </a>
         <div class="card mb-3 mt-5">
@@ -17,11 +17,11 @@
                 </div>
               </div>
               <div class="col-12 col-md-1 text-end">
-                <a class="btn btn-primary w-50" data-bs-toggle="modal" 
+                <a *ngIf="isLogged" class="btn btn-primary w-50" data-bs-toggle="modal" 
                   data-bs-target="#editEducationLabel" (click)="onModalEvent('edit',education)">
                   <i class="bi bi-pencil"></i>
                 </a>
-                <a class="btn btn-primary w-50" data-bs-toggle="modal" 
+                <a *ngIf="isLogged" class="btn btn-primary w-50" data-bs-toggle="modal" 
                 data-bs-target="#deleteEducationLabel" (click)="onModalEvent('delete',education)">
                   <i class="bi bi-x"></i>
                 </a>
