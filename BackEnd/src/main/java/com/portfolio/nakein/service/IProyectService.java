@@ -7,7 +7,7 @@ public interface IProyectService {
     
     public List<Proyect> getProyect();
     
-    public void saveProyect(Proyect proyect);
+    public Proyect saveProyect(Proyect proyect);
     
     public void deleteProyect(Long id);
     

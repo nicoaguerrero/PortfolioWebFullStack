@@ -1,5 +1,6 @@
 <div class="formContainer w-100 p-4 d-flex justify-content-center">
-  <form class="w-25" #f="ngForm" (ngSubmit)="onLogin()" novalidate>
+  <form class="col-12 col-md-5 p-5 rounded-2 shadow" #f="ngForm" (ngSubmit)="onLogin()" novalidate>
+    <h5 class="mb-5">Ingreso como administrador</h5>
     <div class="form-outline mb-4">
       <input type="email" id="email" name="email" class="form-control" [(ngModel)]="email" required/>
       <label class="form-label" for="email">Email</label>
@@ -8,6 +9,6 @@
       <input type="password" id="password" name="password" class="form-control" [(ngModel)]="password" required/>
       <label class="form-label" for="password">Password</label>
     </div>
-    <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
+    <button type="submit" class="btn btn-primary btn-block mb-4 w-100">Login</button>
   </form>
 </div>

@@ -4,6 +4,8 @@ import com.portfolio.nakein.model.Proyect;
 import com.portfolio.nakein.service.IProyectService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,32 +30,21 @@ public class ProyectController {
     }
     
     @PostMapping("/create")
-    public String createProyect(@RequestBody Proyect proyect){
-        iproyectService.saveProyect(proyect);
-        return "Proyect was created sucessfully";
+    public ResponseEntity<Proyect> createProyect(@RequestBody Proyect proyect){
+        Proyect newProyect = iproyectService.saveProyect(proyect);
+        return new ResponseEntity<>(newProyect,HttpStatus.CREATED);
     }
     
     @DeleteMapping("/delete/{id}")
-    public String deleteProyect(@PathVariable Long id){
+    public ResponseEntity<?> deleteProyect(@PathVariable Long id){
         iproyectService.deleteProyect(id);
-        return "The proyect was deleted sucessfully";
+        return new ResponseEntity<>(HttpStatus.OK);
     }
     
-    @PutMapping("/edit/{id}")
-    public Proyect editProyect(@PathVariable Long id,
-                               @RequestParam("titlePro") String newTitle,
-                               @RequestParam("descriptionPro") String newDescription,
-                               @RequestParam("urlPro") String newUrl,
-                               @RequestParam("imgExp") String newImg){
-       Proyect proyect = iproyectService.findProyect(id);
-       
-       proyect.setTitlePro(newTitle);
-       proyect.setDescriptionPro(newDescription);
-       proyect.setUrlPro(newUrl);
-       proyect.setImgPro(newImg);
-       
-       iproyectService.saveProyect(proyect);
-       return proyect;
+    @PutMapping("/edit")
+    public ResponseEntity<Proyect> editProyect(@RequestBody Proyect proyect){
+       Proyect updateProyect = iproyectService.saveProyect(proyect);
+       return new ResponseEntity<>(updateProyect,HttpStatus.OK);
     }
     
     @GetMapping("/bring/profile")

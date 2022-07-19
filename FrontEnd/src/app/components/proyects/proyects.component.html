@@ -1,6 +1,9 @@
 <section class="proyects mt-5">
     <div class="container py-5 rounded">
         <h1><strong>Proyectos</strong></h1>
+        <a *ngIf="isLogged" class="col-3 col-md-1 btn btn-primary tooltips" data-bs-toggle="modal" data-bs-target="#createProyectLabel">
+          <i class="bi bi-plus-circle"></i>
+        </a>
         <div class="row row-cols-1 row-cols-md-2 g-4 mt-5">
           <div class="col" *ngFor="let proyect of proyects">
             <div class="card h-100">
@@ -11,11 +14,168 @@
                   <div class="card-body">
                     <h5 class="card-title">{{proyect.titlePro}}</h5>
                     <p class="card-text">{{proyect.descriptionPro}}</p>
-                    <a type="button" class="btn btn-primary" href="{{proyect.urlPro}}" target="_blank">Ir al proyecto</a>
+                    <div class="row g-0">
+                      <div class="col-8 col-md-8 col-lg-10">
+                        <a type="button" class="btn btn-primary" href="{{proyect.urlPro}}" target="_blank">Ir al proyecto</a>
+                      </div>
+                      <div class="col-4 col-md-4 col-lg-2 text-end">
+                        <a *ngIf="isLogged" class="btn btn-primary" data-bs-toggle="modal" 
+                        data-bs-target="#editProyectLabel" (click)="onModalEvent('edit',proyect)">
+                          <i class="bi bi-pencil"></i>
+                        </a>
+                        <a *ngIf="isLogged" class="btn btn-primary" data-bs-toggle="modal" 
+                        data-bs-target="#deleteProyectLabel" (click)="onModalEvent('delete',proyect)">
+                          <i class="bi bi-x"></i>
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
             </div>
+
+            <!-- If there are no proyects -->
+            <div *ngIf="proyects?.length == 0" class="col-12">
+              <div class="alert alert-info m-0" role="alert">
+                <h4 class="alert-title">Aún no hay proyectos.</h4>
+                <p>Agrega uno nuevo!</p>
+              </div>
+            </div>
+
           </div>
         </div>
+    </div>
+
+    <!-- Create proyect modal-->
+    <div class="modal fade" id="createProyectLabel" tabindex="-1" 
+         aria-labelledby="createProyectLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="createProyectLabel">Añadir proyecto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            </button>
+          </div>
+          <div class="modal-body">
+            <form #addForm="ngForm" (ngSubmit)="onCreateProyect(addForm)">
+              <div class="mb-3">
+                <label for="titlePro" class="col-form-label">Título</label>
+                <input type="text" 
+                ngModel
+                name="titlePro" 
+                class="form-control" 
+                id="titlePro" 
+                placeholder="Título" 
+                required>
+              </div>
+              <div class="mb-3">
+                <label for="descriptionPro" class="col-form-label">Descripción</label>
+                <input type="text" ngModel
+                name="descriptionPro" 
+                class="form-control" 
+                id="descriptionPro" 
+                placeholder="Descripción" 
+                required>
+              </div>
+              <div class="mb-3">
+                <label for="urlPro" class="col-form-label">Url del proyecto</label>
+                <input type="text" ngModel
+                name="urlPro" 
+                class="form-control" 
+                id="urlPro" 
+                placeholder="Url" 
+                required>
+              </div>
+              <div class="mb-3">
+                <label for="imgPro" class="col-form-label">Url imagen</label>
+                <input type="text" ngModel
+                name="imgPro" 
+                class="form-control" 
+                id="imgPro" 
+                placeholder="Url" 
+                required>
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="create-proyect-form" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Cerrar
+                </button>
+                <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">
+                  Añadir proyecto
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit proyect modal-->
+    <div class="modal fade" id="editProyectLabel" tabindex="-1" 
+         aria-labelledby="editProyectLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editProyectLabel">Editar proyecto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            </button>
+          </div>
+          <div class="modal-body">
+            <form #editForm="ngForm" (ngSubmit)="onEditProyect(editForm.value)">
+              <div class="mb-3">
+                <label for="titlePro" class="col-form-label">Título</label>
+                <input type="text" 
+                ngModel="{{editProyect?.titlePro}}"
+                name="titlePro" 
+                class="form-control" 
+                id="titlePro" 
+                placeholder="Título" 
+                required>
+              </div>
+              <input type="hidden"
+              ngModel="{{editProyect?.idProyect}}"
+              name="idProyect"
+              class="form-control"
+              id="idProyect">
+              <div class="mb-3">
+                <label for="descriptionPro" class="col-form-label">Descripción</label>
+                <input type="text" 
+                ngModel="{{editProyect?.descriptionPro}}"
+                name="descriptionPro" 
+                class="form-control" 
+                id="descriptionPro" 
+                placeholder="Descripción" 
+                required>
+              </div>
+              <div class="mb-3">
+                <label for="urlPro" class="col-form-label">Url del proyecto</label>
+                <input type="text"
+                ngModel="{{editProyect?.urlPro}}"
+                name="urlPro" 
+                class="form-control" 
+                id="urlPro" 
+                placeholder="Url" 
+                required>
+              </div>
+              <div class="mb-3">
+                <label for="imgPro" class="col-form-label">Url imagen</label>
+                <input type="text" 
+                ngModel="{{editProyect?.imgPro}}"
+                name="imgPro" 
+                class="form-control" 
+                id="imgPro" 
+                placeholder="Url" 
+                required>
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="edit-proyect-form" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Cerrar
+                </button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+                  Guardar cambios
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
 </section>

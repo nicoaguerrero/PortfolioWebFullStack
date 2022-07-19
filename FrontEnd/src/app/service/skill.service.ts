@@ -15,4 +15,16 @@ export class SkillService {
   public getSkill(): Observable<skill[]> {
     return this.http.get<skill[]>(this.url + 'bring');
   }
+
+  public createSkill(skill:skill): Observable<skill[]> {
+    return this.http.post<skill[]>(this.url + 'create', skill);
+  }
+
+  public deleteSkill(id:number): Observable<void> {
+    return this.http.delete<void>(this.url + 'delete/' + id);
+  }
+
+  public editSkill(skill:skill): Observable<skill> {
+    return this.http.put<skill>(this.url + 'edit', skill);
+  }
 }

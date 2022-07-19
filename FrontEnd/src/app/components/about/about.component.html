@@ -9,7 +9,7 @@
     <div class="data container shadow-sm">
         <div class="row g-0">
             <div class="pfp col-lg-4 col-sm-12 text-center">
-                <a *ngIf="isLogged" class="editPfp btn btn-primary m-3" data-bs-toggle="modal" (click)="changeNumber(4)" 
+                <a *ngIf="isLogged" class="editPfp btn btn-primary m-3 ms-md-5 m-lg-3" data-bs-toggle="modal" (click)="changeNumber(4)" 
                 data-bs-target="#editProfileLabel">
                     <i class="bi bi-pencil"></i>
                 </a>
@@ -25,7 +25,7 @@
                 <!-- Sample text, change later -->
                 <p>{{person.description}}</p>
             </div>
-            <div class="col-sm-12 col-md-1 col-lg-1 mt-5">
+            <div class="col-sm-12 col-md-12 col-lg-1 mt-5">
                 <a *ngIf="isLogged" class="btn btn-primary w-50" data-bs-toggle="modal" 
                 data-bs-target="#editProfileLabel" (click)="changeNumber(3)">
                     <i class="bi bi-pencil"></i>

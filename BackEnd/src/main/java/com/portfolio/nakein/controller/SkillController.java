@@ -4,6 +4,8 @@ import com.portfolio.nakein.model.Skill;
 import com.portfolio.nakein.service.ISkillService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,32 +31,21 @@ public class SkillController {
     }
     
     @PostMapping("/create")
-    public String createSkill(@RequestBody Skill skill){
-        iskillService.saveSkill(skill);
-        return "Skill was created sucessfully";
+    public ResponseEntity<Skill> createSkill(@RequestBody Skill skill){
+        Skill newSkill = iskillService.saveSkill(skill);
+        return new ResponseEntity<>(newSkill,HttpStatus.CREATED);
     }
     
     @DeleteMapping("/delete/{id}")
-    public String deleteSkill(@PathVariable Long id){
+    public ResponseEntity<?> deleteSkill(@PathVariable Long id){
         iskillService.deleteSkill(id);
-        return "The skill was deleted sucessfully";
+        return new ResponseEntity<>(HttpStatus.OK);
     }
     
-    @PutMapping("/edit/{id}")
-    public Skill editSkill(@PathVariable Long id,
-                               @RequestParam("titleSkill") String newTitle,
-                               @RequestParam("imgSkill") String newImg,
-                               @RequestParam("percentage") int newPercentage,
-                               @RequestParam("language") boolean newLanguage){
-       Skill skill = iskillService.findSkill(id);
-       
-       skill.setTitleSkill(newTitle);
-       skill.setImgSkill(newImg);
-       skill.setPercentage(newPercentage);
-       skill.setLanguage(newLanguage);
-       
-       iskillService.saveSkill(skill);
-       return skill;
+    @PutMapping("/edit")
+    public ResponseEntity<Skill> editSkill(@RequestBody Skill skill){
+       Skill updateSkill = iskillService.saveSkill(skill);
+       return new ResponseEntity<>(updateSkill,HttpStatus.OK);
     }
     
     @GetMapping("/bring/profile")

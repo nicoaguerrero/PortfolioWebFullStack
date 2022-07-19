@@ -14,4 +14,16 @@ export class ProyectService {
   public getProyect(): Observable<proyect[]> {
     return this.http.get<proyect[]>(this.url + 'bring');
   }
+
+  public createProyect(proyect:proyect): Observable<proyect[]> {
+    return this.http.post<proyect[]>(this.url + 'create', proyect);
+  }
+
+  public deleteProyect(id:number): Observable<void> {
+    return this.http.delete<void>(this.url + 'delete/' + id);
+  }
+
+  public editProyect(proyect:proyect): Observable<proyect> {
+    return this.http.put<proyect>(this.url + 'edit', proyect);
+  }
 }

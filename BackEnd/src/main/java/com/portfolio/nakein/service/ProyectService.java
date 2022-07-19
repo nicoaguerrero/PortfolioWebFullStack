@@ -17,8 +17,8 @@ public class ProyectService implements IProyectService{
     }
 
     @Override
-    public void saveProyect(Proyect proyect) {
-        iproyectRepository.save(proyect);
+    public Proyect saveProyect(Proyect proyect) {
+        return iproyectRepository.save(proyect);
     }
 
     @Override

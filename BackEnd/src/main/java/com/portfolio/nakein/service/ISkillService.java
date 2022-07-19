@@ -7,7 +7,7 @@ public interface ISkillService {
     
     public List<Skill> getSkill();
     
-    public void saveSkill(Skill skill);
+    public Skill saveSkill(Skill skill);
     
     public void deleteSkill(Long id);
     

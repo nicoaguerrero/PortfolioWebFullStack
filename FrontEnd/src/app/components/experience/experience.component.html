@@ -9,14 +9,14 @@
               <div class="exp-img col-1 text-center align-self-md-center pt-2">
                 <img src="{{experience.imgExp}}" class="img-fluid rounded-start p-md-0" alt="...">
               </div>
-              <div class="col-11 col-md-10">
+              <div class="col-11 col-md-9 col-xl-10">
                 <div class="card-body">
                   <h5 class="card-title">{{experience.titleExp}}</h5>
                   <p class="card-text">{{experience.descriptionExp}}</p>
                   <p class="card-text"><small class="text-muted">{{experience.dateExp}}</small></p>
                 </div>
               </div>
-              <div class="col-12 col-md-1 text-end">
+              <div class="col-12 col-md-2 col-xl-1 text-end">
                 <a *ngIf="isLogged" class="btn btn-primary w-50" data-bs-toggle="modal" 
                   data-bs-target="#editExperienceLabel" (click)="onModalEvent('edit',experience)">
                   <i class="bi bi-pencil"></i>
