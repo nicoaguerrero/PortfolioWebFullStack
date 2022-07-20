@@ -8,7 +8,7 @@ import { user } from '../model/user.model';
   providedIn: 'root'
 })
 export class AuthService {
-  authURL = 'http://localhost:8080/api/';
+  authURL = 'https://portfoliobknd.herokuapp.com/api/';
 
   constructor(private httpClient:HttpClient) { }
 

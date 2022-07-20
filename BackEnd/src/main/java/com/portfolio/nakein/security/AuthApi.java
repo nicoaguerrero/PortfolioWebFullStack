@@ -21,7 +21,7 @@ public class AuthApi {
     AuthenticationManager authManager;
     @Autowired
     JwtTokenUtil jwtTokenUtil;
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://portfolio-83c77.web.app/")
     @PostMapping("/api/login")
     public ResponseEntity<?> login(@RequestBody @Valid AuthRequest request){
         try{
