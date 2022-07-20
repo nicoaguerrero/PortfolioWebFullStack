@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -45,12 +44,6 @@ public class ProyectController {
     public ResponseEntity<Proyect> editProyect(@RequestBody Proyect proyect){
        Proyect updateProyect = iproyectService.saveProyect(proyect);
        return new ResponseEntity<>(updateProyect,HttpStatus.OK);
-    }
-    
-    @GetMapping("/bring/profile")
-    public Proyect findProyect(){
-        //should have the parameter!!!
-        return iproyectService.findProyect((long)1);
     }
     
 }

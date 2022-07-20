@@ -16,15 +16,33 @@ export class EducationComponent implements OnInit {
   deleteEducation:education | undefined;
   editEducation:education | undefined;
   isLogged = false;
+  years:string[]=[];
+  yearsEnd:string[]=[];
   constructor(public educationService: EducationService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
+    this.years = this.generateArrayOfYears(1);
+    this.yearsEnd = this.generateArrayOfYears(2);
     this.getEducations();
     if(this.tokenService.getToken()){
       this.isLogged = true;
     }else{
       this.isLogged = false;
     }
+  }
+
+  public generateArrayOfYears(id:number):string[]{
+    var aux = 0;
+    if(id==2) aux = 10;
+    var max = new Date().getFullYear() + aux;
+    var min = max - 100;
+    var yearList = [];
+  
+    for (var i = max; i >= min; i--) {
+      yearList.push(i.toString());
+    }
+
+    return yearList;
   }
 
   public getEducations():void{

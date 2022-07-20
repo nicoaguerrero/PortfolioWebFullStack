@@ -16,18 +16,21 @@ public class Education {
     private Long idEdu;
     private String titleEdu;
     private String descriptionEdu;
-    private String dateEdu;
+    private String dateEduStart;
+    private String dateEduEnd;
     private String imgEdu;
     
     public Education(){
         
     }
 
-    public Education(Long idEdu, String titleEdu, String descriptionEdu, String dateEdu, String imgEdu) {
+    public Education(Long idEdu, String titleEdu, String descriptionEdu, 
+            String dateEduStart, String dateEduEnd, String imgEdu) {
         this.idEdu = idEdu;
         this.titleEdu = titleEdu;
         this.descriptionEdu = descriptionEdu;
-        this.dateEdu = dateEdu;
+        this.dateEduStart = dateEduStart;
+        this.dateEduEnd = dateEduEnd;
         this.imgEdu = imgEdu;
     }
     

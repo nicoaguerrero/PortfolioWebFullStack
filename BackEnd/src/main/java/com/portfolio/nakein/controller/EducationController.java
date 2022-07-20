@@ -48,9 +48,4 @@ public class EducationController {
         return new ResponseEntity<>(updateEducation,HttpStatus.OK);
     }
     
-    @GetMapping("/bring/profile")
-    public Education findEducation(Long id){
-        return ieducationService.findEducation(id);
-    }
-    
 }

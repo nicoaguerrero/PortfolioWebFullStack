@@ -13,7 +13,10 @@
                 <div class="card-body">
                   <h5 class="card-title">{{experience.titleExp}}</h5>
                   <p class="card-text">{{experience.descriptionExp}}</p>
-                  <p class="card-text"><small class="text-muted">{{experience.dateExp}}</small></p>
+                  <p class="card-text" *ngIf="experience.dateExpEnd == ''">
+                    <small class="text-muted">{{experience.dateExpStart}}</small></p>
+                  <p class="card-text" *ngIf="experience.dateExpEnd != ''">
+                    <small class="text-muted">{{experience.dateExpStart}} - {{experience.dateExpEnd}}</small></p>
                 </div>
               </div>
               <div class="col-12 col-md-2 col-xl-1 text-end">
@@ -32,7 +35,7 @@
           <div *ngIf="experiences?.length == 0" class="col-12">
             <div class="alert alert-info m-0" role="alert">
               <h4 class="alert-title">Aún no hay experiencias.</h4>
-              <p>Agrega una nueva!</p>
+              <p *ngIf="isLogged">Agrega una nueva!</p>
             </div>
           </div>
         </div>
@@ -70,13 +73,24 @@
                 required>
               </div>
               <div class="mb-3">
-                <label for="dateExp" class="col-form-label">Fecha</label>
-                <input type="text" ngModel
-                name="dateExp" 
-                class="form-control" 
-                id="dateExp" 
-                placeholder="Fecha" 
+                <label for="dateExpStart" class="col-form-label">Fecha inicio</label>
+                <select class="form-select"
+                ngModel
+                name="dateExpStart" 
+                id="dateExpStart" 
                 required>
+                  <option *ngFor="let year of years">{{year}}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="dateExpEnd" class="col-form-label">Fecha de finalizacion (Opcional)</label>
+                <select class="form-select"
+                ngModel
+                name="dateExpEnd" 
+                id="dateExpEnd" 
+                >
+                  <option *ngFor="let year of yearsEnd">{{year}}</option>
+                </select>
               </div>
               <div class="mb-3">
                 <label for="imgExp" class="col-form-label">Url imagen</label>
@@ -139,14 +153,24 @@
                 required>
               </div>
               <div class="mb-3">
-                <label for="dateExp" class="col-form-label">Fecha</label>
-                <input type="text"
-                ngModel="{{editExperience?.dateExp}}"
-                name="dateExp" 
-                class="form-control" 
-                id="dateExp" 
-                placeholder="Fecha" 
+                <label for="dateExpStart" class="col-form-label">Fecha inicio</label>
+                <select class="form-select"
+                ngModel="{{editExperience?.dateExpStart}}"
+                name="dateExpStart" 
+                id="dateExpStart" 
                 required>
+                  <option *ngFor="let year of years">{{year}}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="dateExpEnd" class="col-form-label">Fecha de finalizacion (Opcional)</label>
+                <select class="form-select"
+                ngModel="{{editExperience?.dateExpEnd}}"
+                name="dateExpEnd" 
+                id="dateExpEnd" 
+                >
+                  <option *ngFor="let year of yearsEnd">{{year}}</option>
+                </select>
               </div>
               <div class="mb-3">
                 <label for="imgExp" class="col-form-label">Url imagen</label>
@@ -190,7 +214,10 @@
                 <label for="descriptionExp" class="col-form-label">{{deleteExperience?.descriptionExp}}</label>
               </div>
               <div class="mb-3">
-                <label for="dateExp" class="col-form-label">{{deleteExperience?.dateExp}}</label>
+                <label *ngIf="deleteExperience?.dateExpEnd == ''" for="dateExp" 
+                class="col-form-label">{{deleteExperience?.dateExpStart}}</label>
+                <label *ngIf="deleteExperience?.dateExpEnd != ''" for="dateExp" 
+                class="col-form-label">{{deleteExperience?.dateExpStart}} - {{deleteExperience?.dateExpEnd}}</label>
               </div>
               <div class="modal-footer">
                 <button type="button" id="edit-education-form" class="btn btn-secondary" data-bs-dismiss="modal">

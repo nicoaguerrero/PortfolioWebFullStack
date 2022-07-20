@@ -16,15 +16,33 @@ export class ExperienceComponent implements OnInit {
   deleteExperience:experience | undefined;
   editExperience:experience | undefined;
   isLogged = false;
+  years:string[]=[];
+  yearsEnd:string[]=[];
   constructor(public experienceService: ExperienceService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
+    this.years = this.generateArrayOfYears(1);
+    this.yearsEnd = this.generateArrayOfYears(2);
     this.getExperiences();
     if(this.tokenService.getToken()){
       this.isLogged = true;
     }else{
       this.isLogged = false;
     }
+  }
+
+  public generateArrayOfYears(id:number):string[]{
+    var aux = 0;
+    if(id==2) aux = 10;
+    var max = new Date().getFullYear() + aux;
+    var min = max - 100;
+    var yearList = [];
+  
+    for (var i = max; i >= min; i--) {
+      yearList.push(i.toString());
+    }
+
+    return yearList;
   }
 
   public getExperiences():void{

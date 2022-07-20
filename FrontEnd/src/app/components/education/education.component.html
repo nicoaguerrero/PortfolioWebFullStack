@@ -13,7 +13,10 @@
                 <div class="card-body">
                   <h5 class="card-title">{{education.titleEdu}}</h5>
                   <p class="card-text">{{education.descriptionEdu}}</p>
-                  <p class="card-text"><small class="text-muted">{{education.dateEdu}}</small></p>
+                  <p class="card-text" *ngIf="education.dateEduEnd == ''">
+                    <small class="text-muted">{{education.dateEduStart}}</small></p>
+                  <p class="card-text" *ngIf="education.dateEduEnd != ''">
+                    <small class="text-muted">{{education.dateEduStart}} - {{education.dateEduEnd}}</small></p>
                 </div>
               </div>
               <div class="col-12 col-md-2 col-xl-1 text-end">
@@ -32,7 +35,7 @@
           <div *ngIf="educations?.length == 0" class="col-12">
             <div class="alert alert-info m-0" role="alert">
               <h4 class="alert-title">Aún no hay educaciones.</h4>
-              <p>Agrega una nueva!</p>
+              <p *ngIf="isLogged">Agrega una nueva!</p>
             </div>
           </div>
         </div>
@@ -70,13 +73,24 @@
                 required>
               </div>
               <div class="mb-3">
-                <label for="dateEdu" class="col-form-label">Fecha</label>
-                <input type="text" ngModel
-                name="dateEdu" 
-                class="form-control" 
-                id="dateEdu" 
-                placeholder="Fecha" 
+                <label for="dateEduStart" class="col-form-label">Fecha inicio</label>
+                <select class="form-select"
+                ngModel
+                name="dateEduStart" 
+                id="dateEduStart" 
                 required>
+                  <option *ngFor="let year of years">{{year}}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="dateEduEnd" class="col-form-label">Fecha de finalizacion (Opcional)</label>
+                <select class="form-select"
+                ngModel
+                name="dateEduEnd" 
+                id="dateEduEnd" 
+                >
+                  <option *ngFor="let year of yearsEnd">{{year}}</option>
+                </select>
               </div>
               <div class="mb-3">
                 <label for="imgEdu" class="col-form-label">Url imagen</label>
@@ -139,14 +153,24 @@
                 required>
               </div>
               <div class="mb-3">
-                <label for="dateEdu" class="col-form-label">Fecha</label>
-                <input type="text"
-                ngModel="{{editEducation?.dateEdu}}"
-                name="dateEdu" 
-                class="form-control" 
-                id="dateEdu" 
-                placeholder="Fecha" 
+                <label for="dateEduStart" class="col-form-label">Fecha inicio</label>
+                <select class="form-select"
+                ngModel="{{editEducation?.dateEduStart}}"
+                name="dateEduStart" 
+                id="dateEduStart" 
                 required>
+                  <option *ngFor="let year of years">{{year}}</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="dateEduEnd" class="col-form-label">Fecha de finalizacion (Opcional)</label>
+                <select class="form-select"
+                ngModel="{{editEducation?.dateEduEnd}}"
+                name="dateEduEnd" 
+                id="dateEduEnd" 
+                >
+                  <option *ngFor="let year of yearsEnd">{{year}}</option>
+                </select>
               </div>
               <div class="mb-3">
                 <label for="imgEdu" class="col-form-label">Url imagen</label>
@@ -190,7 +214,10 @@
                 <label for="descriptionEdu" class="col-form-label">{{deleteEducation?.descriptionEdu}}</label>
               </div>
               <div class="mb-3">
-                <label for="dateEdu" class="col-form-label">{{deleteEducation?.dateEdu}}</label>
+                <label *ngIf="deleteEducation?.dateEduEnd == ''" for="dateEdu" 
+                class="col-form-label">{{deleteEducation?.dateEduStart}}</label>
+                <label *ngIf="deleteEducation?.dateEduEnd != ''" for="dateEdu" 
+                class="col-form-label">{{deleteEducation?.dateEduStart}} - {{deleteEducation?.dateEduEnd}}</label>
               </div>
               <div class="modal-footer">
                 <button type="button" id="edit-education-form" class="btn btn-secondary" data-bs-dismiss="modal">

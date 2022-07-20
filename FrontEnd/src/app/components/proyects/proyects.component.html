@@ -15,10 +15,10 @@
                     <h5 class="card-title">{{proyect.titlePro}}</h5>
                     <p class="card-text">{{proyect.descriptionPro}}</p>
                     <div class="row g-0">
-                      <div class="col-8 col-md-8 col-lg-10">
+                      <div class="col-8 col-md-8 col-lg-9">
                         <a type="button" class="btn btn-primary" href="{{proyect.urlPro}}" target="_blank">Ir al proyecto</a>
                       </div>
-                      <div class="col-4 col-md-4 col-lg-2 text-end">
+                      <div class="col-4 col-md-4 col-lg-3 text-end">
                         <a *ngIf="isLogged" class="btn btn-primary" data-bs-toggle="modal" 
                         data-bs-target="#editProyectLabel" (click)="onModalEvent('edit',proyect)">
                           <i class="bi bi-pencil"></i>
@@ -37,7 +37,7 @@
             <div *ngIf="proyects?.length == 0" class="col-12">
               <div class="alert alert-info m-0" role="alert">
                 <h4 class="alert-title">Aún no hay proyectos.</h4>
-                <p>Agrega uno nuevo!</p>
+                <p *ngIf="isLogged">Agrega uno nuevo!</p>
               </div>
             </div>
 
