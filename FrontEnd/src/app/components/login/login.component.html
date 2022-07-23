@@ -9,6 +9,7 @@
       <input type="password" id="password" name="password" class="form-control" [(ngModel)]="password" required/>
       <label class="form-label" for="password">Contraseña</label>
     </div>
+    <p *ngIf="isLoginFail">Usuario o contraseña incorrectos</p>
     <button type="submit" class="btn btn-primary btn-block mb-4 w-100">Login</button>
   </form>
 </div>

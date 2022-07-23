@@ -11,7 +11,7 @@ import { TokenService } from 'src/app/service/token.service';
 })
 export class LoginComponent implements OnInit {
   isLogged = false;
-  isLogginFail = false;
+  isLoginFail = false;
   user!: user;
   email!: string;
   password!: string;
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if(this.tokenService.getToken()){
       this.isLogged = true;
-      this.isLogginFail = false;
+      this.isLoginFail = false;
     }
   }
 
@@ -31,14 +31,14 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.user).subscribe({
       next: (data) => {
         this.isLogged = true;
-        this.isLogginFail = false;
+        this.isLoginFail = false;
         this.tokenService.setToken(data.accessToken);
         this.tokenService.setEmail(data.email);
         this.router.navigate(['']);
       },
       error: (error) => {
         this.isLogged = false;
-        this.isLogginFail = true;
+        this.isLoginFail = true;
         this.errorMessage = error.message;
         console.log(this.errorMessage);
       }
